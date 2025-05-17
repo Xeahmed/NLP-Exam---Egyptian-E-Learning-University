@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLP Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #ddd;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        body.dark-mode .container {
+            background: #2a2a2a;
+        }
+        h1 {
+            text-align: center;
+            font-size: 1.8em;
+            color: #007BFF;
+        }
+        .creator {
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            opacity: 0.3;
+            font-size: 14px;
+            color: #777;
+        }
+        .domain {
+            margin-bottom: 15px;
+        }
+        .domain h2 {
+            cursor: pointer;
+            background: #007BFF;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1.2em;
+        }
+        body.dark-mode .domain h2 {
+            background: #0056b3;
+        }
+        .questions {
+            display: none;
+            padding: 10px;
+            border-left: 2px solid #007BFF;
+        }
+        .questions.active {
+            display: block;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        .question p {
+            margin: 0 0 10px;
+            font-size: 1em;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+            font-size: 0.95em;
+        }
+        .feedback {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            direction: rtl;
+        }
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+        }
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .submit-btn, .theme-toggle {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .theme-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #555;
+        }
+        body.dark-mode .theme-toggle {
+            background: #888;
+        }
+        .score {
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 20px;
+            color: #333;
+        }
+        body.dark-mode .score {
+            color: #ddd;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.4em;
+            }
+            .question p {
+                font-size: 0.9em;
+            }
+            .options label {
+                font-size: 0.85em;
+            }
+            .watermark {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>NLP Quiz</h1>
+        <p class="creator">This page was created by Ahmed Refat Mohamed – Sohag</p>
+        <div class="watermark">XE_Ahmed</div>
+
+        <!-- Phonetics -->
+        <div class="domain">
+            <h2>Phonetics</h2>
+            <div class="questions">
+                <div class="question" id="q1">
+                    <p>An alphabet of a language "Σ" is an infinite and nonempty set of symbols.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="True"> True</label>
+                        <label><input type="radio" name="q1" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q2">
+                    <p>Concerns the production and perception of acoustic sounds that form the speech signal.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="Phonetics"> Phonetics</label>
+                        <label><input type="radio" name="q2" value="Morphology"> Morphology</label>
+                        <label><input type="radio" name="q2" value="Syntax"> Syntax</label>
+                        <label><input type="radio" name="q2" value="Semantics"> Semantics</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q52">
+                    <p>Phonetics is the study of the sounds of language in terms of their physical properties.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q52" value="True"> True</label>
+                        <label><input type="radio" name="q52" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q57">
+                    <p>The study of phonetics includes articulatory, acoustic, and auditory phonetics.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q57" value="True"> True</label>
+                        <label><input type="radio" name="q57" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q58">
+                    <p>Phonemes are the smallest units of sound that can distinguish meaning in a language.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q58" value="True"> True</label>
+                        <label><input type="radio" name="q58" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q76">
+                    <p>Articulatory phonetics studies how speech sounds are produced by the vocal tract.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q76" value="True"> True</label>
+                        <label><input type="radio" name="q76" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q77">
+                    <p>Acoustic phonetics focuses on the physical properties of sound waves in speech.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q77" value="True"> True</label>
+                        <label><input type="radio" name="q77" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q78">
+                    <p>Auditory phonetics examines how speech sounds are perceived by the ear.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q78" value="True"> True</label>
+                        <label><input type="radio" name="q78" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Morphology -->
+        <div class="domain">
+            <h2>Morphology</h2>
+            <div class="questions">
+                <div class="question" id="q3">
+                    <p>The second level concerns the words and study of the structure and the forms of a word.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="Morphology"> Morphology</label>
+                        <label><input type="radio" name="q3" value="Phonetics"> Phonetics</label>
+                        <label><input type="radio" name="q3" value="Syntax"> Syntax</label>
+                        <label><input type="radio" name="q3" value="Semantics"> Semantics</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q4">
+                    <p>After a combination with an inflectional morpheme, the class of the actual stem does not change.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="True"> True</label>
+                        <label><input type="radio" name="q4" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q53">
+                    <p>A morpheme is the smallest meaningful unit in a language.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q53" value="True"> True</label>
+                        <label><input type="radio" name="q53" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q59">
+                    <p>Morphology studies how words are formed from morphemes.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q59" value="True"> True</label>
+                        <label><input type="radio" name="q59" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q60">
+                    <p>Derivational morphemes change the meaning or part of speech of a word.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q60" value="True"> True</label>
+                        <label><input type="radio" name="q60" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q61">
+                    <p>Inflectional morphemes always change the part of speech of a word.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q61" value="True"> True</label>
+                        <label><input type="radio" name="q61" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q79">
+                    <p>Free morphemes can stand alone as words.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q79" value="True"> True</label>
+                        <label><input type="radio" name="q79" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q80">
+                    <p>Bound morphemes must be attached to other morphemes to form words.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q80" value="True"> True</label>
+                        <label><input type="radio" name="q80" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q81">
+                    <p>The word "unhappiness" contains three morphemes: un-, happy, and -ness.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q81" value="True"> True</label>
+                        <label><input type="radio" name="q81" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Syntax -->
+        <div class="domain">
+            <h2>Syntax</h2>
+            <div class="questions">
+                <div class="question" id="q5">
+                    <p>Study the order of words in a sentence and their relationships, defines word categories and functions.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="Syntax"> Syntax</label>
+                        <label><input type="radio" name="q5" value="Morphology"> Morphology</label>
+                        <label><input type="radio" name="q5" value="Phonetics"> Phonetics</label>
+                        <label><input type="radio" name="q5" value="Semantics"> Semantics</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q6">
+                    <p>Incidentally, there are cases in which a sentence may be pragmatically well-formed but not syntactically well-formed.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="True"> True</label>
+                        <label><input type="radio" name="q6" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q54">
+                    <p>Syntax defines the rules for combining words into phrases and sentences.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q54" value="True"> True</label>
+                        <label><input type="radio" name="q54" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q62">
+                    <p>Syntax is concerned with the structure of sentences, not their meaning.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q62" value="True"> True</label>
+                        <label><input type="radio" name="q62" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q63">
+                    <p>Context-free grammars are used to describe the syntax of natural languages.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q63" value="True"> True</label>
+                        <label><input type="radio" name="q63" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q64">
+                    <p>Syntactic parsing involves analyzing the structure of a sentence according to grammatical rules.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q64" value="True"> True</label>
+                        <label><input type="radio" name="q64" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q82">
+                    <p>Phrase structure rules define how phrases are constructed in a sentence.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q82" value="True"> True</label>
+                        <label><input type="radio" name="q82" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q83">
+                    <p>Dependency grammar focuses on the relationships between words in a sentence.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q83" value="True"> True</label>
+                        <label><input type="radio" name="q83" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q84">
+                    <p>Syntactic ambiguity occurs when a sentence has multiple possible structures.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q84" value="True"> True</label>
+                        <label><input type="radio" name="q84" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Semantics -->
+        <div class="domain">
+            <h2>Semantics</h2>
+            <div class="questions">
+                <div class="question" id="q7">
+                    <p>It considers the meaning of words and sentences.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="Semantics"> Semantics</label>
+                        <label><input type="radio" name="q7" value="Syntax"> Syntax</label>
+                        <label><input type="radio" name="q7" value="Phonetics"> Phonetics</label>
+                        <label><input type="radio" name="q7" value="Morphology"> Morphology</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q55">
+                    <p>Semantics is concerned with the truth conditions of sentences.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q55" value="True"> True</label>
+                        <label><input type="radio" name="q55" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q65">
+                    <p>Semantics studies the meaning of linguistic expressions in isolation from context.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q65" value="True"> True</label>
+                        <label><input type="radio" name="q65" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q66">
+                    <p>Compositional semantics assumes that the meaning of a sentence is determined by the meanings of its parts.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q66" value="True"> True</label>
+                        <label><input type="radio" name="q66" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q67">
+                    <p>Lexical semantics focuses on the meaning of individual words.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q67" value="True"> True</label>
+                        <label><input type="radio" name="q67" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q85">
+                    <p>Semantic ambiguity occurs when a sentence has multiple possible meanings.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q85" value="True"> True</label>
+                        <label><input type="radio" name="q85" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q86">
+                    <p>Truth-conditional semantics analyzes meaning based on conditions under which a sentence is true.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q86" value="True"> True</label>
+                        <label><input type="radio" name="q86" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q87">
+                    <p>Semantics is independent of the speaker's intentions.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q87" value="True"> True</label>
+                        <label><input type="radio" name="q87" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pragmatics -->
+        <div class="domain">
+            <h2>Pragmatics</h2>
+            <div class="questions">
+                <div class="question" id="q8">
+                    <p>It is the meaning of words and sentences in specific situations (Study how the context of a sentence contributes to its meaning).</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="Pragmatics"> Pragmatics</label>
+                        <label><input type="radio" name="q8" value="Semantics"> Semantics</label>
+                        <label><input type="radio" name="q8" value="Syntax"> Syntax</label>
+                        <label><input type="radio" name="q8" value="Morphology"> Morphology</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q56">
+                    <p>Pragmatics studies how context affects the interpretation of language.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q56" value="True"> True</label>
+                        <label><input type="radio" name="q56" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q68">
+                    <p>Pragmatics is concerned with implicatures and speech acts.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q68" value="True"> True</label>
+                        <label><input type="radio" name="q68" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q69">
+                    <p>Deixis refers to linguistic expressions whose interpretation depends on the context.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q69" value="True"> True</label>
+                        <label><input type="radio" name="q69" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q70">
+                    <p>Pragmatics is unrelated to the social aspects of language use.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q70" value="True"> True</label>
+                        <label><input type="radio" name="q70" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q88">
+                    <p>Implicatures are meanings inferred from context beyond the literal meaning.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q88" value="True"> True</label>
+                        <label><input type="radio" name="q88" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q89">
+                    <p>Speech acts include actions like promising, requesting, or apologizing performed through language.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q89" value="True"> True</label>
+                        <label><input type="radio" name="q89" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q90">
+                    <p>Pragmatics ignores the literal meaning of sentences.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q90" value="True"> True</label>
+                        <label><input type="radio" name="q90" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formal Languages -->
+        <div class="domain">
+            <h2>Formal Languages</h2>
+            <div class="questions">
+                <div class="question" id="q9">
+                    <p>Σ sigma symbol can and will stand for bigger objects that can have internal structure.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="True"> True</label>
+                        <label><input type="radio" name="q9" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q10">
+                    <p>A _____ is a collection of strings constructed from an alphabet of symbols.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="language"> language</label>
+                        <label><input type="radio" name="q10" value="string"> string</label>
+                        <label><input type="radio" name="q10" value="alphabet"> alphabet</label>
+                        <label><input type="radio" name="q10" value="grammar"> grammar</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q71">
+                    <p>Formal languages are defined by a set of rules or a grammar.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q71" value="True"> True</label>
+                        <label><input type="radio" name="q71" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q72">
+                    <p>The empty string is a valid string in any formal language.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q72" value="True"> True</label>
+                        <label><input type="radio" name="q72" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q73">
+                    <p>A formal language can be infinite in size.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q73" value="True"> True</label>
+                        <label><input type="radio" name="q73" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q91">
+                    <p>The Chomsky hierarchy classifies formal languages based on their complexity.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q91" value="True"> True</label>
+                        <label><input type="radio" name="q91" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q92">
+                    <p>Regular languages are the simplest class in the Chomsky hierarchy.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q92" value="True"> True</label>
+                        <label><input type="radio" name="q92" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q93">
+                    <p>Context-free languages are more complex than regular languages.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q93" value="True"> True</label>
+                        <label><input type="radio" name="q93" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Regular Expressions -->
+        <div class="domain">
+            <h2>Regular Expressions</h2>
+            <div class="questions">
+                <div class="question" id="q11">
+                    <p>Regular expressions cannot be used to specify search strings as well as to define a language.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="True"> True</label>
+                        <label><input type="radio" name="q11" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q12">
+                    <p>Regular expressions can textually represent the structure of Finite-state automata.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="True"> True</label>
+                        <label><input type="radio" name="q12" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q13">
+                    <p>Regular expressions can be used to specify search strings as well as to define a language.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="True"> True</label>
+                        <label><input type="radio" name="q13" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q14">
+                    <p>The pattern /woodchucks/ will match the string "Woodchucks" (Assume case-sensitive).</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="True"> True</label>
+                        <label><input type="radio" name="q14" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q15">
+                    <p>The pattern /[wW]/ will match either a lowercase w or an uppercase W.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="True"> True</label>
+                        <label><input type="radio" name="q15" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q16">
+                    <p>The pattern /^a/ will exclude any string that starts with the letter a.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="True"> True</label>
+                        <label><input type="radio" name="q16" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q17">
+                    <p>The ? operator in a regular expression means "zero or one" of the preceding character or pattern.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="True"> True</label>
+                        <label><input type="radio" name="q17" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q18">
+                    <p>The * operator in a regular expression means "one or more" of the preceding character or pattern.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="True"> True</label>
+                        <label><input type="radio" name="q18" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q19">
+                    <p>The + operator in a regular expression means "zero or more" of the preceding character or pattern.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="True"> True</label>
+                        <label><input type="radio" name="q19" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q20">
+                    <p>The pattern /\b99\b/ will match the string "99" as a standalone word (e.g., in "99 bottles").</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="True"> True</label>
+                        <label><input type="radio" name="q20" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q21">
+                    <p>The pattern /[0-9]/ or \d will match any non-digit character.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q21" value="True"> True</label>
+                        <label><input type="radio" name="q21" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q22">
+                    <p>The pattern /\bgupp[y|ies]\b/ will match both "guppy" and "guppies" as standalone words.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q22" value="True"> True</label>
+                        <label><input type="radio" name="q22" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q23">
+                    <p>The pattern /^The dog\.$/ will match the exact string "The dog.".</p>
+                    <div class="options">
+                        <label><input type="radio" name="q23" value="True"> True</label>
+                        <label><input type="radio" name="q23" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q24">
+                    <p>Regular expressions are used to describe patterns of _____ in strings.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q24" value="Regular expressions"> Regular expressions</label>
+                        <label><input type="radio" name="q24" value="Characters"> Characters</label>
+                        <label><input type="radio" name="q24" value="Finite automata"> Finite automata</label>
+                        <label><input type="radio" name="q24" value="Grammars"> Grammars</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q25">
+                    <p>The symbol ε in regular expressions represents the _____.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q25" value="empty string ε"> empty string ε</label>
+                        <label><input type="radio" name="q25" value="empty set {}"> empty set {}</label>
+                        <label><input type="radio" name="q25" value="any character"> any character</label>
+                        <label><input type="radio" name="q25" value="end of string"> end of string</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q26">
+                    <p>The symbol {} in regular expressions represents the _____.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q26" value="empty set {}"> empty set {}</label>
+                        <label><input type="radio" name="q26" value="empty string ε"> empty string ε</label>
+                        <label><input type="radio" name="q26" value="any character"> any character</label>
+                        <label><input type="radio" name="q26" value="end of string"> end of string</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q94">
+                    <p>The pattern /\w+/ matches one or more word characters.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q94" value="True"> True</label>
+                        <label><input type="radio" name="q94" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q95">
+                    <p>The pattern /\s/ matches any whitespace character.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q95" value="True"> True</label>
+                        <label><input type="radio" name="q95" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q96">
+                    <p>The pattern /[a-zA-Z]/ matches any digit character.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q96" value="True"> True</label>
+                        <label><input type="radio" name="q96" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Finite Automata -->
+        <div class="domain">
+            <h2>Finite Automata</h2>
+            <div class="questions">
+                <div class="question" id="q27">
+                    <p>FSA are not needed when studying morphology and parts of syntax.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q27" value="True"> True</label>
+                        <label><input type="radio" name="q27" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q28">
+                    <p>A DFA will reject a string if there is a valid path to a final accepting state.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q28" value="True"> True</label>
+                        <label><input type="radio" name="q28" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q29">
+                    <p>The language accepted by a DFA, L(A), is the set of strings that reach an accepting state.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q29" value="True"> True</label>
+                        <label><input type="radio" name="q29" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q30">
+                    <p>An NFA accepts a string if at least one path leads to an accepting state.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q30" value="True"> True</label>
+                        <label><input type="radio" name="q30" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q31">
+                    <p>Any NFA can be converted to an equivalent DFA with a straightforward algorithm.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q31" value="True"> True</label>
+                        <label><input type="radio" name="q31" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q32">
+                    <p>A D-FSA has at least one path for each string in its language.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q32" value="True"> True</label>
+                        <label><input type="radio" name="q32" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q33">
+                    <p>NFAs are generally faster to execute than DFAs due to their nondeterminism.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q33" value="True"> True</label>
+                        <label><input type="radio" name="q33" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q34">
+                    <p>Nondeterminism can make solutions to problems clearer and simpler.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q34" value="True"> True</label>
+                        <label><input type="radio" name="q34" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q35">
+                    <p>NFAs are equivalent in expressive power to DFAs.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q35" value="True"> True</label>
+                        <label><input type="radio" name="q35" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q36">
+                    <p>A negation machine for M1 will accept strings rejected by M1 and reject strings accepted by M1 to produce M2.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q36" value="True"> True</label>
+                        <label><input type="radio" name="q36" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q37">
+                    <p>A negation machine can be constructed for both deterministic and non-deterministic machines.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q37" value="True"> True</label>
+                        <label><input type="radio" name="q37" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q38">
+                    <p>A _____ is in exactly one state at a time.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q38" value="Deterministic Finite Automata (DFA)"> Deterministic Finite Automata (DFA)</label>
+                        <label><input type="radio" name="q38" value="Non-deterministic Finite Automata (NFA)"> Non-deterministic Finite Automata (NFA)</label>
+                        <label><input type="radio" name="q38" value="Pushdown Automata"> Pushdown Automata</label>
+                        <label><input type="radio" name="q38" value="Turing Machine"> Turing Machine</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q39">
+                    <p>A _____ may be in multiple states at a time due to nondeterminism.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q39" value="Non-deterministic Finite Automata (NFA)"> Non-deterministic Finite Automata (NFA)</label>
+                        <label><input type="radio" name="q39" value="Deterministic Finite Automata (DFA)"> Deterministic Finite Automata (DFA)</label>
+                        <label><input type="radio" name="q39" value="Pushdown Automata"> Pushdown Automata</label>
+                        <label><input type="radio" name="q39" value="Turing Machine"> Turing Machine</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q40">
+                    <p>The process of determining whether a string is in the language of an automaton is called _____.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q40" value="Recognition"> Recognition</label>
+                        <label><input type="radio" name="q40" value="Parsing"> Parsing</label>
+                        <label><input type="radio" name="q40" value="Generation"> Generation</label>
+                        <label><input type="radio" name="q40" value="Translation"> Translation</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q41">
+                    <p>A machine that has exactly one transition per input symbol is called _____.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q41" value="Deterministic"> Deterministic</label>
+                        <label><input type="radio" name="q41" value="Non-deterministic"> Non-deterministic</label>
+                        <label><input type="radio" name="q41" value="Ambiguous"> Ambiguous</label>
+                        <label><input type="radio" name="q41" value="Recursive"> Recursive</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q42">
+                    <p>The _____ algorithm is used to recognize strings in a regular language.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q42" value="D-Recognize algorithm"> D-Recognize algorithm</label>
+                        <label><input type="radio" name="q42" value="N-Recognize algorithm"> N-Recognize algorithm</label>
+                        <label><input type="radio" name="q42" value="Parsing algorithm"> Parsing algorithm</label>
+                        <label><input type="radio" name="q42" value="Generation algorithm"> Generation algorithm</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q43">
+                    <p>The D-Recognize algorithm can handle ambiguous regular languages.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q43" value="True"> True</label>
+                        <label><input type="radio" name="q43" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q97">
+                    <p>Finite automata can be used to model regular languages.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q97" value="True"> True</label>
+                        <label><input type="radio" name="q97" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q98">
+                    <p>The pumping lemma is used to prove that a language is not regular.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q98" value="True"> True</label>
+                        <label><input type="radio" name="q98" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q99">
+                    <p>Epsilon transitions in NFAs allow moving to a new state without consuming input.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q99" value="True"> True</label>
+                        <label><input type="radio" name="q99" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Morphological Parsing -->
+        <div class="domain">
+            <h2>Morphological Parsing</h2>
+            <div class="questions">
+                <div class="question" id="q44">
+                    <p>There can be more than one lexical level representation for a given word (ambiguity).</p>
+                    <div class="options">
+                        <label><input type="radio" name="q44" value="True"> True</label>
+                        <label><input type="radio" name="q44" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q45">
+                    <p>An FSA can say yes or no but cannot provide the lexical level representation of a word.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q45" value="True"> True</label>
+                        <label><input type="radio" name="q45" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q46">
+                    <p>An FSA might accept a misspelled word like "foxs" since it does not handle orthographic rules.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q46" value="True"> True</label>
+                        <label><input type="radio" name="q46" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q47">
+                    <p>An FSA is more specialized than an FST because it performs mapping between lexical and surface forms.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q47" value="True"> True</label>
+                        <label><input type="radio" name="q47" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q48">
+                    <p>Porter Stemmer can handle both inflectional and derivational affixes.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q48" value="True"> True</label>
+                        <label><input type="radio" name="q48" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q49">
+                    <p>Porter Stemmer does not rely on a lexicon and does not guarantee a correct stem.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q49" value="True"> True</label>
+                        <label><input type="radio" name="q49" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q50">
+                    <p>The process of analyzing a word like "foxes" into "fox + -es" is called _____.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q50" value="Morphological parsing"> Morphological parsing</label>
+                        <label><input type="radio" name="q50" value="Stemming"> Stemming</label>
+                        <label><input type="radio" name="q50" value="Lemmatization"> Lemmatization</label>
+                        <label><input type="radio" name="q50" value="Tokenization"> Tokenization</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q51">
+                    <p>The process of finding the constituent morphemes in a word.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q51" value="Morphological parsing"> Morphological parsing</label>
+                        <label><input type="radio" name="q51" value="Stemming"> Stemming</label>
+                        <label><input type="radio" name="q51" value="Parsing"> Parsing</label>
+                        <label><input type="radio" name="q51" value="Generation"> Generation</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q74">
+                    <p>Morphological parsing aims to break a word into its constituent morphemes.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q74" value="True"> True</label>
+                        <label><input type="radio" name="q74" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q75">
+                    <p>Finite-state transducers are commonly used for morphological parsing.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q75" value="True"> True</label>
+                        <label><input type="radio" name="q75" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q100">
+                    <p>Lemmatization reduces a word to its base form using a dictionary.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q100" value="True"> True</label>
+                        <label><input type="radio" name="q100" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q101">
+                    <p>Stemming always produces a valid word.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q101" value="True"> True</label>
+                        <label><input type="radio" name="q101" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q102">
+                    <p>Morphological parsing is language-independent.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q102" value="True"> True</label>
+                        <label><input type="radio" name="q102" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Domains from PDFs -->
+        <!-- Computational Linguistics -->
+        <div class="domain">
+            <h2>Computational Linguistics</h2>
+            <div class="questions">
+                <div class="question" id="q103">
+                    <p>Computational linguistics involves the use of computers to process natural language.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q103" value="True"> True</label>
+                        <label><input type="radio" name="q103" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q104">
+                    <p>Machine translation is an application of computational linguistics.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q104" value="True"> True</label>
+                        <label><input type="radio" name="q104" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q105">
+                    <p>Computational linguistics is unrelated to natural language processing.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q105" value="True"> True</label>
+                        <label><input type="radio" name="q105" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q106">
+                    <p>Speech recognition systems rely on computational linguistics techniques.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q106" value="True"> True</label>
+                        <label><input type="radio" name="q106" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q107">
+                    <p>Tokenization is the process of breaking text into words or phrases.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q107" value="True"> True</label>
+                        <label><input type="radio" name="q107" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Language Models -->
+        <div class="domain">
+            <h2>Language Models</h2>
+            <div class="questions">
+                <div class="question" id="q108">
+                    <p>A language model predicts the probability of a sequence of words.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q108" value="True"> True</label>
+                        <label><input type="radio" name="q108" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q109">
+                    <p>N-gram models predict the next word based on the previous n-1 words.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q109" value="True"> True</label>
+                        <label><input type="radio" name="q109" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q110">
+                    <p>Neural language models use deep learning to model language.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q110" value="True"> True</label>
+                        <label><input type="radio" name="q110" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q111">
+                    <p>Language models are used only for text generation.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q111" value="True"> True</label>
+                        <label><input type="radio" name="q111" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q112">
+                    <p>Perplexity is a measure of how well a language model predicts a sample.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q112" value="True"> True</label>
+                        <label><input type="radio" name="q112" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Parsing -->
+        <div class="domain">
+            <h2>Parsing</h2>
+            <div class="questions">
+                <div class="question" id="q113">
+                    <p>Parsing involves analyzing the structure of a sentence based on grammar rules.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q113" value="True"> True</label>
+                        <label><input type="radio" name="q113" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q114">
+                    <p>Top-down parsing starts with the highest-level structure and works downward.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q114" value="True"> True</label>
+                        <label><input type="radio" name="q114" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q115">
+                    <p>Bottom-up parsing starts with individual words and builds up to the sentence structure.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q115" value="True"> True</label>
+                        <label><input type="radio" name="q115" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q116">
+                    <p>The CYK algorithm is used for parsing context-free grammars.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q116" value="True"> True</label>
+                        <label><input type="radio" name="q116" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q117">
+                    <p>Parsing is only used for natural languages.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q117" value="True"> True</label>
+                        <label><input type="radio" name="q117" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Semantics and Pragmatics Applications -->
+        <div class="domain">
+            <h2>Semantics and Pragmatics Applications</h2>
+            <div class="questions">
+                <div class="question" id="q118">
+                    <p>Word sense disambiguation determines the correct meaning of a word in context.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q118" value="True"> True</label>
+                        <label><input type="radio" name="q118" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q119">
+                    <p>Named entity recognition identifies proper nouns like names and locations.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q119" value="True"> True</label>
+                        <label><input type="radio" name="q119" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q120">
+                    <p>Coreference resolution identifies when different words refer to the same entity.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q120" value="True"> True</label>
+                        <label><input type="radio" name="q120" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q121">
+                    <p>Sentiment analysis determines the emotional tone of a text.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q121" value="True"> True</label>
+                        <label><input type="radio" name="q121" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q122">
+                    <p>Pragmatics has no role in natural language understanding systems.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q122" value="True"> True</label>
+                        <label><input type="radio" name="q122" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Machine Learning in NLP -->
+        <div class="domain">
+            <h2>Machine Learning in NLP</h2>
+            <div class="questions">
+                <div class="question" id="q123">
+                    <p>Machine learning is used to improve the performance of NLP systems.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q123" value="True"> True</label>
+                        <label><input type="radio" name="q123" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q124">
+                    <p>Supervised learning requires labeled data for training NLP models.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q124" value="True"> True</label>
+                        <label><input type="radio" name="q124" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q125">
+                    <p>Unsupervised learning does not require labeled data for NLP tasks.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q125" value="True"> True</label>
+                        <label><input type="radio" name="q125" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q126">
+                    <p>Word embeddings represent words as vectors in a high-dimensional space.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q126" value="True"> True</label>
+                        <label><input type="radio" name="q126" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q127">
+                    <p>Transformers are a type of neural network architecture used in NLP.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q127" value="True"> True</label>
+                        <label><input type="radio" name="q127" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Evaluation Metrics -->
+        <div class="domain">
+            <h2>Evaluation Metrics</h2>
+            <div class="questions">
+                <div class="question" id="q128">
+                    <p>Precision measures the proportion of correct positive predictions.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q128" value="True"> True</label>
+                        <label><input type="radio" name="q128" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q129">
+                    <p>Recall measures the proportion of actual positives correctly identified.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q129" value="True"> True</label>
+                        <label><input type="radio" name="q129" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q130">
+                    <p>F1-score is the harmonic mean of precision and recall.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q130" value="True"> True</label>
+                        <label><input type="radio" name="q130" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q131">
+                    <p>BLEU score is used to evaluate machine translation quality.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q131" value="True"> True</label>
+                        <label><input type="radio" name="q131" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q132">
+                    <p>Accuracy is the only metric needed to evaluate NLP models.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q132" value="True"> True</label>
+                        <label><input type="radio" name="q132" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NLP Applications -->
+        <div class="domain">
+            <h2>NLP Applications</h2>
+            <div class="questions">
+                <div class="question" id="q133">
+                    <p>Chatbots use NLP to understand and respond to user queries.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q133" value="True"> True</label>
+                        <label><input type="radio" name="q133" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q134">
+                    <p>Text summarization generates a concise summary of a longer text.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q134" value="True"> True</label>
+                        <label><input type="radio" name="q134" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q135">
+                    <p>Question answering systems retrieve precise answers from a knowledge base.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q135" value="True"> True</label>
+                        <label><input type="radio" name="q135" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q136">
+                    <p>Information retrieval systems use NLP to find relevant documents.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q136" value="True"> True</label>
+                        <label><input type="radio" name="q136" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q137">
+                    <p>Spell checkers rely on NLP techniques to detect and correct errors.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q137" value="True"> True</label>
+                        <label><input type="radio" name="q137" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q138">
+                    <p>Text classification assigns labels to text based on its content.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q138" value="True"> True</label>
+                        <label><input type="radio" name="q138" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q139">
+                    <p>Topic modeling identifies themes in a collection of documents.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q139" value="True"> True</label>
+                        <label><input type="radio" name="q139" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q140">
+                    <p>Dialogue systems use NLP to maintain coherent conversations.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q140" value="True"> True</label>
+                        <label><input type="radio" name="q140" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q141">
+                    <p>NLP applications are limited to text processing only.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q141" value="True"> True</label>
+                        <label><input type="radio" name="q141" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q142">
+                    <p>Voice assistants like Siri use NLP to process spoken commands.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q142" value="True"> True</label>
+                        <label><input type="radio" name="q142" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q143">
+                    <p>Text-to-speech systems convert text into spoken language using NLP.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q143" value="True"> True</label>
+                        <label><input type="radio" name="q143" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q144">
+                    <p>Optical character recognition (OCR) is an NLP application.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q144" value="True"> True</label>
+                        <label><input type="radio" name="q144" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q145">
+                    <p>Language identification determines the language of a given text.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q145" value="True"> True</label>
+                        <label><input type="radio" name="q145" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q146">
+                    <p>Summarization can be extractive or abstractive.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q146" value="True"> True</label>
+                        <label><input type="radio" name="q146" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q147">
+                    <p>Extractive summarization selects key sentences from the original text.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q147" value="True"> True</label>
+                        <label><input type="radio" name="q147" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q148">
+                    <p>Abstractive summarization generates new sentences to summarize text.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q148" value="True"> True</label>
+                        <label><input type="radio" name="q148" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q149">
+                    <p>NLP is used in spam detection to classify emails.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q149" value="True"> True</label>
+                        <label><input type="radio" name="q149" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q150">
+                    <p>Sentiment analysis is used to detect emotions in social media posts.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q150" value="True"> True</label>
+                        <label><input type="radio" name="q150" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                <div class="question" id="q151">
+                    <p>Text generation is an NLP task that produces human-like text.</p>
+                    <div class="options">
+                        <label><input type="radio" name="q151" value="True"> True</label>
+                        <label><input type="radio" name="q151" value="False"> False</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <button class="submit-btn">Submit Answers</button>
+        <div class="score"></div>
+    </div>
+
+    <button class="theme-toggle">Toggle Dark Mode</button>
+
+    <script>
+        // Toggle domain visibility
+        document.querySelectorAll('.domain h2').forEach(header => {
+            header.addEventListener('click', () => {
+                const questions = header.nextElementSibling;
+                questions.classList.toggle('active');
+            });
+        });
+
+        // Toggle dark mode
+        document.querySelector('.theme-toggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        // Correct answers and explanations in Egyptian Arabic
+        const answers = {
+            q33: {
+                correct: 'False',
+                explanation: 'الـ NFAs مش أسرع من الـ DFAs في التنفيذ. الـ DFAs أسرع عشان عندهم مسار واحد بس لكل إدخال، فبيخلّوا العملية أسرع وأوضح. الـ NFAs بيبقوا أبطأ عشان بيحاولوا كذا مسار في نفس الوقت.'
+            },
+            q34: {
+                correct: 'True',
+                explanation: 'صح، الـ Nondeterminism بيخلّي الحلول أوضح وأبسط في بعض المشاكل. الـ NFAs بتسمح بتصميم أسهل لأنك ممكن تتخيل كذا حالة من غير ما تضطر تحدد كل مسار زي الـ DFAs.'
+            },
+            q35: {
+                correct: 'True',
+                explanation: 'صحيح، الـ NFAs والـ DFAs قوتهم التعبيرية زي بعض. يعني أي لغة بيقبلها الـ NFA ممكن يتقبلها الـ DFA، والعكس صحيح، بس الـ NFA ممكن يبقى تصميمه أبسط.'
+            },
+            q36: {
+                correct: 'True',
+                explanation: 'صح، آلة النفي (Negation Machine) بتقلب النتيجة. يعني لو الـ M1 بتقبل سلسلة، الـ M2 هترفضها، ولو الـ M1 بترفض سلسلة، الـ M2 هتقبلها.'
+            },
+            q37: {
+                correct: 'True',
+                explanation: 'صحيح، ممكن تعمل آلة نفي للـ DFAs والـ NFAs. الفكرة إنك تقلب الحالات المقبولة وغير المقبولة، وده بيشتغل في الحالتين.'
+            },
+            q38: {
+                correct: 'Deterministic Finite Automata (DFA)',
+                explanation: 'الـ DFA هو اللي بيبقى في حالة واحدة بس في كل وقت. عشان كده اسمه Deterministic، يعني كل إدخال بيروح لمسار واحد محدد.'
+            },
+            q39: {
+                correct: 'Non-deterministic Finite Automata (NFA)',
+                explanation: 'الـ NFA هو اللي ممكن يبقى في كذا حالة في نفس الوقت بسبب الـ Nondeterminism. يعني ممكن يكون عنده كذا مسار لنفس الإدخال.'
+            },
+            q40: {
+                correct: 'Recognition',
+                explanation: 'العملية اللي بنعرف بيها إذا كانت السلسلة جزء من لغة الآلة اسمها Recognition. يعني بنشوف إذا كانت السلسلة مقبولة ولا لأ.'
+            },
+            q41: {
+                correct: 'Deterministic',
+                explanation: 'الآلة اللي عندها انتقال واحد بس لكل رمز إدخال اسمها Deterministic. زي الـ DFA، كل إدخال بيحدد بالظبط الحالة الجاية.'
+            },
+            q42: {
+                correct: 'D-Recognize algorithm',
+                explanation: 'الـ D-Recognize algorithm هو اللي بيستخدم للتعرف على السلاسل في اللغات المنتظمة. بيشتغل مع الـ DFAs عشان يحدد إذا كانت السلسلة مقبولة.'
+            },
+            q43: {
+                correct: 'False',
+                explanation: 'غلط، الـ D-Recognize algorithm مش بيتعامل مع اللغات المنتظمة الغامضة (Ambiguous). هو مصمم للـ DFAs اللي عندها مسار واحد بس، مش للغات معقدة.'
+            },
+            q44: {
+                correct: 'True',
+                explanation: 'صح، ممكن يكون في أكتر من تمثيل لكلمة واحدة على المستوى اللغوي بسبب الغموض (Ambiguity). يعني كلمة زي "bank" ممكن تكون ليها معاني مختلفة.'
+            },
+            q45: {
+                correct: 'True',
+                explanation: 'صحيح، الـ FSA بيقول بس نعم أو لأ، يعني بيقبل أو بيرفض الكلمة، بس ما بيديكش التمثيل اللغوي (Lexical Representation) زي الـ FST.'
+            },
+            q46: {
+                correct: 'True',
+                explanation: 'صح، الـ FSA ممكن يقبل كلمة مكتوبة غلط زي "foxs" لأنه مش بيتعامل مع القواعد الإملائية (Orthographic Rules). هو بس بيشوف إذا كانت السلسلة مطابقة.'
+            },
+            q47: {
+                correct: 'False',
+                explanation: 'غلط، الـ FSA أكثر تخصصًا من الـ FST. الـ FST هو اللي بيعمل Mapping بين الصيغ اللغوية والسطحية، مش الـ FSA.'
+            },
+            q48: {
+                correct: 'True',
+                explanation: 'صح، الـ Porter Stemmer بيتعامل مع الإضافات الإعرابية (Inflectional) والاشتقاقية (Derivational) عشان يقلل الكلمة لجذرها.'
+            },
+            q49: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Porter Stemmer مش بيعتمد على قاموس (Lexicon) وما بيضمنش إن الجذر اللي بيطلعه صح 100%. هو بس بيقطع الكلمة بناءً على قواعد.'
+            },
+            q50: {
+                correct: 'Morphological Parsing',
+                explanation: 'العملية اللي بنحلل بيها كلمة زي "foxes" لـ "fox + -es" اسمها Morphological Parsing. يعني بنفكك الكلمة لمكوناتها.'
+            },
+            q51: {
+                correct: 'Morphological Parsing',
+                explanation: 'صح، الـ Morphological Parsing هي العملية اللي بنلاقي فيها المورفيمات (Constituent Morphemes) جوا الكلمة.'
+            },
+            q52: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Phonetics بتدرس أصوات اللغة من ناحية خصائصها الفيزيائية زي الارتفاع والتردد.'
+            },
+            q53: {
+                correct: 'True',
+                explanation: 'صح، المورفيم هو أصغر وحدة في اللغة ليها معنى. زي "-s" في "cats" بتعبر عن الجمع.'
+            },
+            q54: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Syntax بيحدد القواعد اللي بتجمع الكلمات عشان تصير جمل وجمل فرعية.'
+            },
+            q55: {
+                correct: 'True',
+                explanation: 'صح، الـ Semantics بتهتم بشروط الحقيقة (Truth Conditions) بتاعة الجمل، يعني إمتى الجملة تبقى صح أو غلط.'
+            },
+            q56: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Pragmatics بتدرس إزاي السياق بيأثر على تفسير اللغة، زي إنك تفهم جملة بناءً على الموقف.'
+            },
+            q57: {
+                correct: 'True',
+                explanation: 'صح، الـ Phonetics بتشمل دراسة النطق (Articulatory)، الصوتيات (Acoustic)، والسمع (Auditory).'
+            },
+            q58: {
+                correct: 'True',
+                explanation: 'صحيح، الفونيمات هي أصغر وحدات الصوت اللي بتميز المعنى في اللغة، زي /p/ و/b/ في "pat" و"bat".'
+            },
+            q59: {
+                correct: 'True',
+                explanation: 'صح، الـ Morphology بتدرس إزاي الكلمات بتتكون من المورفيمات، زي إضافة "-ed" لتكوين الماضي.'
+            },
+            q60: {
+                correct: 'True',
+                explanation: 'صحيح، المورفيمات الاشتقاقية (Derivational) بتغير معنى الكلمة أو نوعها، زي "un-" في "unhappy".'
+            },
+            q61: {
+                correct: 'False',
+                explanation: 'غلط، المورفيمات الإعرابية (Inflectional) مش دايمًا بتغير نوع الكلمة. زي "-s" في "cats" بتعبر عن الجمع بس.'
+            },
+            q62: {
+                correct: 'True',
+                explanation: 'صح، الـ Syntax بيهتم بتركيب الجمل، مش بمعناها. المعنى ده بتاع الـ Semantics.'
+            },
+            q63: {
+                correct: 'True',
+                explanation: 'صحيح، القواعد الحرة من السياق (Context-Free Grammars) بتستخدم لوصف تركيب اللغات الطبيعية.'
+            },
+            q64: {
+                correct: 'True',
+                explanation: 'صح، الـ Syntactic Parsing هو تحليل تركيب الجملة بناءً على القواعد النحوية.'
+            },
+            q65: {
+                correct: 'False',
+                explanation: 'غلط، الـ Semantics بتدرس المعنى مع السياق، مش معزول عنه. السياق مهم عشان تفهم المعنى صح.'
+            },
+            q66: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Compositional Semantics بتفترض إن معنى الجملة بيتحدد من معاني أجزائها.'
+            },
+            q67: {
+                correct: 'True',
+                explanation: 'صح، الـ Lexical Semantics بتركز على معنى الكلمات الفردية، زي إزاي "run" ليها معاني مختلفة.'
+            },
+            q68: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Pragmatics بتهتم بالـ Implicatures (المعاني الضمنية) والـ Speech Acts زي الوعد أو الطلب.'
+            },
+            q69: {
+                correct: 'True',
+                explanation: 'صح، الـ Deixis هي التعبيرات اللي معناها بيعتمد على السياق، زي "هنا" أو "دلوقتي".'
+            },
+            q70: {
+                correct: 'False',
+                explanation: 'غلط، الـ Pragmatics مرتبطة جدًا بالجوانب الاجتماعية لاستخدام اللغة، زي إزاي بنتكلم مع الناس في مواقف مختلفة.'
+            },
+            q71: {
+                correct: 'True',
+                explanation: 'صحيح، اللغات الرسمية (Formal Languages) بتتحدد بقواعد أو جرمر معين.'
+            },
+            q72: {
+                correct: 'True',
+                explanation: 'صح، السلسلة الفاضية (Empty String) سلسلة مقبولة في أي لغة رسمية.'
+            },
+            q73: {
+                correct: 'True',
+                explanation: 'صحيح، اللغة الرسمية ممكن تبقى حجمها لا نهائي لو القواعد بتسمح بتوليد سلاسل لا نهائية.'
+            },
+            q74: {
+                correct: 'True',
+                explanation: 'صح، الـ Morphological Parsing هدفه إنه يفكك الكلمة لمورفيماتها، زي "unhappiness" لـ "un + happy + ness".'
+            },
+            q75: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Finite-State Transducers بتستخدم كتير في الـ Morphological Parsing عشان تعمل Mapping بين الصيغ.'
+            },
+            q76: {
+                correct: 'True',
+                explanation: 'صح، الـ Articulatory Phonetics بتدرس إزاي الأصوات بتطلع من القناة الصوتية.'
+            },
+            q77: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Acoustic Phonetics بتركز على الخصائص الفيزيائية للموجات الصوتية في الكلام.'
+            },
+            q78: {
+                correct: 'True',
+                explanation: 'صح، الـ Auditory Phonetics بتدرس إزاي الأذن بتستقبل وتفهم الأصوات.'
+            },
+            q79: {
+                correct: 'True',
+                explanation: 'صحيح، المورفيمات الحرة (Free Morphemes) ممكن تقف لوحدها ككلمات، زي "cat".'
+            },
+            q80: {
+                correct: 'True',
+                explanation: 'صح، المورفيمات المربوطة (Bound Morphemes) لازم تتربط بمورفيمات تانية عشان تكون كلمة، زي "-s".'
+            },
+            q81: {
+                correct: 'True',
+                explanation: 'صحيح، الكلمة "unhappiness" فيها تلات مورفيمات: "un-" (نفي)، "happy" (الجذر)، و"-ness" (تحويل لاسم).'
+            },
+            q82: {
+                correct: 'True',
+                explanation: 'صح، قواعد تركيب العبارات (Phrase Structure Rules) بتحدد إزاي العبارات بتتكون في الجملة.'
+            },
+            q83: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Dependency Grammar بتركز على العلاقات بين الكلمات في الجملة، زي إزاي الكلمات متصلة ببعض.'
+            },
+            q84: {
+                correct: 'True',
+                explanation: 'صح، الغموض النحوي (Syntactic Ambiguity) بيحصل لما الجملة يبقى ليها أكتر من تركيب ممكن.'
+            },
+            q85: {
+                correct: 'True',
+                explanation: 'صحيح، الغموض الدلالي (Semantic Ambiguity) بيحصل لما الجملة يبقى ليها أكتر من معنى، زي "bank" (نهر أو بنك).'
+            },
+            q86: {
+                correct: 'True',
+                explanation: 'صح، الـ Truth-Conditional Semantics بتحلل المعنى بناءً على الشروط اللي تخلّي الجملة صح.'
+            },
+            q87: {
+                correct: 'False',
+                explanation: 'غلط، الـ Semantics مش مستقلة عن نوايا المتكلم. النوايا بتأثر على المعنى في سياقات معينة.'
+            },
+            q88: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Implicatures هي المعاني اللي بنستنتجها من السياق ورا المعنى الحرفي.'
+            },
+            q89: {
+                correct: 'True',
+                explanation: 'صح، الـ Speech Acts بتشمل أفعال زي الوعد أو الطلب أو الاعتذار اللي بنعملها باللغة.'
+            },
+            q90: {
+                correct: 'False',
+                explanation: 'غلط، الـ Pragmatics مش بتتجاهل المعنى الحرفي. هي بتبني عليه عشان تفهم المعنى في السياق.'
+            },
+            q91: {
+                correct: 'True',
+                explanation: 'صحيح، تصنيف تشومسكي (Chomsky Hierarchy) بيصنّف اللغات الرسمية بناءً على تعقيدها.'
+            },
+            q92: {
+                correct: 'True',
+                explanation: 'صح، اللغات المنتظمة (Regular Languages) هي أبسط فئة في تصنيف تشومسكي.'
+            },
+            q93: {
+                correct: 'True',
+                explanation: 'صحيح، اللغات الحرة من السياق (Context-Free Languages) أكثر تعقيدًا من اللغات المنتظمة.'
+            },
+            q94: {
+                correct: 'True',
+                explanation: 'صح، النمط /\w+/ بيطابق واحد أو أكتر من الحروف أو الأرقام (Word Characters).'
+            },
+            q95: {
+                correct: 'True',
+                explanation: 'صحيح، النمط /\s/ بيطابق أي مسافة بيضاء (Whitespace) زي الـ Space أو الـ Tab.'
+            },
+            q96: {
+                correct: 'False',
+                explanation: 'غلط، النمط /[a-zA-Z]/ بيطابق أي حرف (Letter)، مش أرقام (Digits). لو عايز أرقام، تستخدم /[0-9]/ أو \d.'
+            },
+            q97: {
+                correct: 'True',
+                explanation: 'صح، الـ Finite Automata بتستخدم لتصميم اللغات المنتظمة.'
+            },
+            q98: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Pumping Lemma بيستخدم عشان يثبت إن لغة معينة مش منتظمة.'
+            },
+            q99: {
+                correct: 'True',
+                explanation: 'صح، الـ Epsilon Transitions في الـ NFAs بتسمح بالانتقال لحالة جديدة من غير ما تستخدم إدخال.'
+            },
+            q100: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Lemmatization بتحول الكلمة لشكلها الأساسي باستخدام قاموس، زي تحويل "running" لـ "run".'
+            },
+            q101: {
+                correct: 'False',
+                explanation: 'غلط، الـ Stemming مش دايمًا بيطلّع كلمة صحيحة. ممكن يطلّع جذر زي "runn" من "running" مش كلمة كاملة.'
+            },
+            q102: {
+                correct: 'False',
+                explanation: 'غلط، الـ Morphological Parsing مش مستقل عن اللغة. كل لغة ليها قواعد مورفولوجية مختلفة.'
+            },
+            q103: {
+                correct: 'True',
+                explanation: 'صح، الـ Computational Linguistics بتستخدم الكمبيوتر عشان تفهم وتعالج اللغة الطبيعية.'
+            },
+            q104: {
+                correct: 'True',
+                explanation: 'صحيح، الترجمة الآلية (Machine Translation) هي تطبيق من تطبيقات الـ Computational Linguistics.'
+            },
+            q105: {
+                correct: 'False',
+                explanation: 'غلط، الـ Computational Linguistics مرتبطة جدًا بـ NLP. الاتنين بيشتغلوا على معالجة اللغة الطبيعية.'
+            },
+            q106: {
+                correct: 'True',
+                explanation: 'صح، أنظمة التعرف على الكلام (Speech Recognition) بتعتمد على تقنيات الـ Computational Linguistics.'
+            },
+            q107: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Tokenization هي العملية اللي بنقسم بيها النص لكلمات أو جمل فرعية.'
+            },
+            q108: {
+                correct: 'True',
+                explanation: 'صح، الـ Language Model بيتوقع احتمالية تسلسل الكلمات، زي إنه يحسب إزاي الكلمات بتيجي ورا بعض.'
+            },
+            q109: {
+                correct: 'True',
+                explanation: 'صحيح، موديلات الـ N-gram بتتوقع الكلمة الجاية بناءً على الـ n-1 كلمة اللي قبلها.'
+            },
+            q110: {
+                correct: 'True',
+                explanation: 'صح، الـ Neural Language Models بتستخدم الـ Deep Learning عشان تصمم اللغة.'
+            },
+            q111: {
+                correct: 'False',
+                explanation: 'غلط، الـ Language Models مش بس لتوليد النصوص. بتستخدم كمان في حاجات زي الترجمة والتصنيف.'
+            },
+            q112: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Perplexity هي مقياس لإزاي الـ Language Model بيتوقع عينة بشكل كويس.'
+            },
+            q113: {
+                correct: 'True',
+                explanation: 'صح، الـ Parsing بيحلل تركيب الجملة بناءً على قواعد الجرامر.'
+            },
+            q114: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Top-Down Parsing بيبدأ من أعلى مستوى في التركيب وبينزل لتحت.'
+            },
+            q115: {
+                correct: 'True',
+                explanation: 'صح، الـ Bottom-Up Parsing بيبدأ من الكلمات الفردية وبيبني التركيب لفوق لحد الجملة.'
+            },
+            q116: {
+                correct: 'True',
+                explanation: 'صحيح، خوارزمية الـ CYK بتستخدم لتحليل القواعد الحرة من السياق.'
+            },
+            q117: {
+                correct: 'False',
+                explanation: 'غلط، الـ Parsing مش بس للغات الطبيعية. بيستخدم كمان في اللغات البرمجية زي تحليل الكود.'
+            },
+            q118: {
+                correct: 'True',
+                explanation: 'صح، الـ Word Sense Disambiguation بيحدد المعنى الصح لكلمة في السياق، زي "bank" (نهر ولا بنك).'
+            },
+            q119: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Named Entity Recognition بيحدد الأسماء الخاصة زي الأشخاص أو الأماكن.'
+            },
+            q120: {
+                correct: 'True',
+                explanation: 'صح، الـ Coreference Resolution بيحدد لما كلمات مختلفة بتشير لنفس الشيء، زي "Ahmed" و"he".'
+            },
+            q121: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Sentiment Analysis بيحدد النبرة العاطفية للنص، زي إنه فرحان ولا زعلان.'
+            },
+            q122: {
+                correct: 'False',
+                explanation: 'غلط، الـ Pragmatics ليها دور كبير في أنظمة فهم اللغة الطبيعية، عشان بتساعد تفهم السياق.'
+            },
+            q123: {
+                correct: 'True',
+                explanation: 'صح، الـ Machine Learning بيستخدم عشان يحسن أداء أنظمة الـ NLP.'
+            },
+            q124: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Supervised Learning بيحتاج بيانات ملصقة (Labeled Data) عشان يدرب موديلات الـ NLP.'
+            },
+            q125: {
+                correct: 'True',
+                explanation: 'صح، الـ Unsupervised Learning مش بيحتاج بيانات ملصقة لمهام الـ NLP.'
+            },
+            q126: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Word Embeddings بتمثل الكلمات كفيكتورات في فضاء متعدد الأبعاد.'
+            },
+            q127: {
+                correct: 'True',
+                explanation: 'صح، الـ Transformers نوع من الشبكات العصبية اللي بتستخدم في الـ NLP.'
+            },
+            q128: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Precision بيقيس نسبة التوقعات الإيجابية الصحيحة.'
+            },
+            q129: {
+                correct: 'True',
+                explanation: 'صح، الـ Recall بيقيس نسبة الإيجابيات الحقيقية اللي اتعرفت صح.'
+            },
+            q130: {
+                correct: 'True',
+                explanation: 'صحيح، الـ F1-Score هو المتوسط التوافقي بتاع الـ Precision والـ Recall.'
+            },
+            q131: {
+                correct: 'True',
+                explanation: 'صح، الـ BLEU Score بيستخدم عشان يقيم جودة الترجمة الآلية.'
+            },
+            q132: {
+                correct: 'False',
+                explanation: 'غلط، الـ Accuracy مش المقياس الوحيد لتقييم موديلات الـ NLP. في مقاييس تانية زي الـ Precision و الـ Recall.'
+            },
+            q133: {
+                correct: 'True',
+                explanation: 'صحيح، الشات بوتس بتستخدم الـ NLP عشان تفهم أسئلة المستخدم وترد عليها.'
+            },
+            q134: {
+                correct: 'True',
+                explanation: 'صح، الـ Text Summarization بيعمل ملخص مختصر لنص طويل.'
+            },
+            q135: {
+                correct: 'True',
+                explanation: 'صحيح، أنظمة الإجابة على الأسئلة بتجيب إجابات دقيقة من قاعدة معرفة باستخدام الـ NLP.'
+            },
+            q136: {
+                correct: 'True',
+                explanation: 'صح، أنظمة استرجاع المعلومات (Information Retrieval) بتستخدم الـ NLP عشان تلاقي مستندات مناسبة.'
+            },
+            q137: {
+                correct: 'True',
+                explanation: 'صحيح، مدقق الإملاء (Spell Checkers) بيعتمد على تقنيات الـ NLP عشان يكتشف ويصحح الأخطاء.'
+            },
+            q138: {
+                correct: 'True',
+                explanation: 'صح، الـ Text Classification بيحط تصنيفات للنصوص بناءً على محتواها، زي تصنيف الإيميلات.'
+            },
+            q139: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Topic Modeling بيحدد الموضوعات الرئيسية في مجموعة مستندات.'
+            },
+            q140: {
+                correct: 'True',
+                explanation: 'صح، أنظمة الحوار (Dialogue Systems) بتستخدم الـ NLP عشان تحتفظ بمحادثات متماسكة.'
+            },
+            q141: {
+                correct: 'False',
+                explanation: 'غلط، تطبيقات الـ NLP مش محدودة بس لمعالجة النصوص. بتشمل كمان الصوت زي الـ Speech Recognition.'
+            },
+            q142: {
+                correct: 'True',
+                explanation: 'صحيح، المساعدات الصوتية زي Siri بتستخدم الـ NLP عشان تفهم الأوامر المنطوقة.'
+            },
+            q143: {
+                correct: 'True',
+                explanation: 'صح، أنظمة تحويل النص لكلام (Text-to-Speech) بتحول النص لكلام باستخدام الـ NLP.'
+            },
+            q144: {
+                correct: 'False',
+                explanation: 'غلط، الـ OCR (Optical Character Recognition) مش تطبيق مباشر للـ NLP. هو بيحول الصور لنصوص، بس ممكن يتكامل مع الـ NLP.'
+            },
+            q145: {
+                correct: 'True',
+                explanation: 'صحيح، تحديد اللغة (Language Identification) بيحدد لغة النص باستخدام الـ NLP.'
+            },
+            q146: {
+                correct: 'True',
+                explanation: 'صح، الـ Summarization ممكن يكون Extractive (يختار جمل جاهزة) أو Abstractive (يولد جمل جديدة).'
+            },
+            q147: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Extractive Summarization بيختار جمل رئيسية من النص الأصلي.'
+            },
+            q148: {
+                correct: 'True',
+                explanation: 'صح، الـ Abstractive Summarization بيولد جمل جديدة تلخص النص.'
+            },
+            q149: {
+                correct: 'True',
+                explanation: 'صحيح، الـ NLP بيستخدم في كشف السبام عشان يصنف الإيميلات.'
+            },
+            q150: {
+                correct: 'True',
+                explanation: 'صح، الـ Sentiment Analysis بيستخدم عشان يكتشف العواطف في بوستات السوشيال ميديا.'
+            },
+            q151: {
+                correct: 'True',
+                explanation: 'صحيح، الـ Text Generation هو مهمة في الـ NLP بتولد نصوص زي اللي بني آدم يكتبها.'
+            }
+        };
+
+        // Submit answers and show feedback
+        document.querySelector('.submit-btn').addEventListener('click', () => {
+            let score = 0;
+            const total = Object.keys(answers).length;
+            for (const [qid, { correct, explanation }] of Object.entries(answers)) {
+                const selected = document.querySelector(`input[name="${qid}"]:checked`);
+                const feedback = document.querySelector(`#${qid} .feedback`);
+                if (selected) {
+                    const isCorrect = selected.value === correct;
+                    if (isCorrect) score++;
+                    feedback.style.display = 'block';
+                    feedback.className = `feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+                    feedback.textContent = isCorrect 
+                        ? 'إجابة صحيحة! ' + explanation 
+                        : 'إجابة غلط! ' + explanation;
+                } else {
+                    feedback.style.display = 'block';
+                    feedback.className = 'feedback incorrect';
+                    feedback.textContent = 'ما اخترتش إجابة! ' + explanation;
+                }
+            }
+            document.querySelector('.score').textContent = `نتيجتك: ${score} من ${total}`;
+        });
+    </script>
+</body>
+</html>
